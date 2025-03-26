@@ -762,7 +762,7 @@ Public Class Form19
         Dim m As Double = 0
         '        m = CDbl(MetroTextBox11.Text.Trim)
         m = CDbl(MetroTextBox19.Text.Trim)
-        If m > 1000 Then
+        If m > 208644 Then
             If Val(MetroTextBox26.Text.Trim) = 2 Then
                 If MetroTextBox15.Text.Trim = "" Then
                     MetroFramework.MetroMessageBox.Show(Me, "Debe especificar número de documento para el cliente", rsv_Modulo, MessageBoxButtons.OK, MessageBoxIcon.Information)

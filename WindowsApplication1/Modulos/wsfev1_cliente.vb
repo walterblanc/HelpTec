@@ -203,6 +203,7 @@ Module wsfev1_cliente
                               ByVal Cant_CpteAsoc As Byte, ByVal txt_CpteAsoc_Cuit1 As String, ByVal txt_CpteAsoc_Tipo1 As String, ByVal txt_CpteAsoc_PtoVta1 As String, ByVal txt_CpteAsoc_Nro1 As String,
                               ByVal txt_CpteAsoc_Cuit2 As String, ByVal txt_CpteAsoc_Tipo2 As String, ByVal txt_CpteAsoc_PtoVta2 As String, ByVal txt_CpteAsoc_Nro2 As String,
                               ByVal txt_CpteAsoc_Cuit3 As String, ByVal txt_CpteAsoc_Tipo3 As String, ByVal txt_CpteAsoc_PtoVta3 As String, ByVal txt_CpteAsoc_Nro3 As String,
+                              ByVal txt_CondicionIVAReceptorId As String,
                               ByRef txt_cae_result As String, ByRef txt_cae As String, ByRef txt_Fec_vto_cae As String, ByRef txt_msg_err As String)
 
 
@@ -252,6 +253,10 @@ Module wsfev1_cliente
                 .FchVtoPago = txt_fecvtopago
                 .MonId = txt_monid
                 .MonCotiz = txt_moncot
+                .MonCotizSpecified = True
+                .CanMisMonExt = "N"
+                .CondicionIVAReceptorId = Val(txt_CondicionIVAReceptorId)
+                '           .CondicionIVAReceptorIdSpecified = True
             End With
 
             'Comprobantes Asociados Por Notas de Creditos y Notas de Debito

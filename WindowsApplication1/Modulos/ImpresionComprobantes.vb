@@ -810,6 +810,8 @@ Module ImpresionComprobantes
 
 
             Dim Cantidad_Registros As Integer = 0
+            Dim Tot_IvaContenido As Double = 0
+            Dim Tot_ImpuestosIndirectos As Double = 0
 
             Dim Sql As String = "Select * From Ventas_detalle_Afip WHERE (TipoComprobante= " & xTipoComprobante & ") AND (LetraComprobante= '" & xLetraComprobante & "') AND (NumeroComprobante= '" & xNumeroComprobante & "') AND (Fecha='" & xFecha & "') And (Estado=0) Order by Orden"
             Dim cmdRecordSet As New OleDbCommand(Sql, ConSql)
@@ -868,6 +870,9 @@ Module ImpresionComprobantes
                         Call generar_archivo_qr(CadenaQr, rsv_Path_Qr)
 
                         mensaje_monotributo = " "
+
+                        Tot_IvaContenido = Math.Round(Convert.ToDouble(drRecordSet("Iva105").ToString) + Convert.ToDouble(drRecordSet("Iva21").ToString), 2)
+                        Tot_ImpuestosIndirectos = 0
 
                         p_vez = False
 
@@ -1038,6 +1043,9 @@ Module ImpresionComprobantes
             If xTipoImpresora = 0 Then
                 Dim mi_CryResumen As New CrComprobantesB()
                 mi_CryResumen.SetDataSource(dts.Tables("estructuraComprobantes"))
+                mi_CryResumen.SetParameterValue("IvaContenido", Tot_IvaContenido)
+                mi_CryResumen.SetParameterValue("ImpuestosIndirectos", Tot_ImpuestosIndirectos)
+
                 Dim miForma As New Form1000()
                 miForma.CrvReportes.ReportSource = mi_CryResumen
                 miForma.ShowDialog()
@@ -1047,6 +1055,9 @@ Module ImpresionComprobantes
             If xTipoImpresora = 1 Then
                 Dim mi_CryResumen As New CrComprobantesB()
                 mi_CryResumen.SetDataSource(dts.Tables("estructuraComprobantes"))
+                mi_CryResumen.SetParameterValue("IvaContenido", Tot_IvaContenido)
+                mi_CryResumen.SetParameterValue("ImpuestosIndirectos", Tot_ImpuestosIndirectos)
+
                 Dim miForma As New Form1000()
                 miForma.CrvReportes.ReportSource = mi_CryResumen
                 mi_CryResumen.PrintOptions.PrinterName = rsv_Impresora_Defecto
@@ -1058,6 +1069,9 @@ Module ImpresionComprobantes
                 If Cantidad_Registros > 4 And Cantidad_Registros <= 12 Then
                     Dim mi_CryResumen As New CrComprobantesB_Ticket()
                     mi_CryResumen.SetDataSource(dts.Tables("estructuraComprobantes"))
+                    mi_CryResumen.SetParameterValue("IvaContenido", Tot_IvaContenido)
+                    mi_CryResumen.SetParameterValue("ImpuestosIndirectos", Tot_ImpuestosIndirectos)
+
                     Dim miForma As New Form1000()
                     miForma.CrvReportes.ReportSource = mi_CryResumen
                     mi_CryResumen.PrintOptions.PrinterName = rsv_impresora_Termica
@@ -1067,6 +1081,9 @@ Module ImpresionComprobantes
                 If Cantidad_Registros <= 4 Then
                     Dim mi_CryResumen As New CrComprobantesB_Ticket_Reducido()
                     mi_CryResumen.SetDataSource(dts.Tables("estructuraComprobantes"))
+                    mi_CryResumen.SetParameterValue("IvaContenido", Tot_IvaContenido)
+                    mi_CryResumen.SetParameterValue("ImpuestosIndirectos", Tot_ImpuestosIndirectos)
+
                     Dim miForma As New Form1000()
                     miForma.CrvReportes.ReportSource = mi_CryResumen
                     mi_CryResumen.PrintOptions.PrinterName = rsv_impresora_Termica
@@ -1076,6 +1093,9 @@ Module ImpresionComprobantes
                 If Cantidad_Registros > 12 Then
                     Dim mi_CryResumen As New CrComprobantesB()
                     mi_CryResumen.SetDataSource(dts.Tables("estructuraComprobantes"))
+                    mi_CryResumen.SetParameterValue("IvaContenido", Tot_IvaContenido)
+                    mi_CryResumen.SetParameterValue("ImpuestosIndirectos", Tot_ImpuestosIndirectos)
+
                     Dim miForma As New Form1000()
                     miForma.CrvReportes.ReportSource = mi_CryResumen
                     mi_CryResumen.PrintOptions.PrinterName = rsv_Impresora_Defecto
@@ -1088,6 +1108,9 @@ Module ImpresionComprobantes
             If xTipoImpresora = 3 Then
                 Dim mi_CryResumen As New CrComprobantesB()
                 mi_CryResumen.SetDataSource(dts.Tables("estructuraComprobantes"))
+                mi_CryResumen.SetParameterValue("IvaContenido", Tot_IvaContenido)
+                mi_CryResumen.SetParameterValue("ImpuestosIndirectos", Tot_ImpuestosIndirectos)
+
                 mi_CryResumen.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, xNombreArchivo)
                 mi_CryResumen.Dispose()
             End If

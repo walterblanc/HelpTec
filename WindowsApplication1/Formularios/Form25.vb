@@ -1892,6 +1892,8 @@ Public Class Form25
         txt_letra_comp = MetroTextBox25.Text.Trim.ToUpper
         txt_nro_comp = Formatea_Numero_Comprobante(Val(MetroTextBox24.Text.Trim), Val(MetroTextBox23.Text.Trim))
 
+        Dim txt_CondicionIVAReceptorId As String = RetornaTipoResponsableReceptor(Val(MetroTextBox26.Text.Trim)).ToString
+
         Call FECAESolicitar(txt_token, txt_sign,
                                              txt_cuit, txt_ptovta, txt_tipo,
                                              txt_con, txt_doctipo, txt_docnro, txt_cbtedes,
@@ -1904,6 +1906,7 @@ Public Class Form25
                                              Cant_CpteAsoc, txt_CpteAsoc_Cuit1, txt_CpteAsoc_Tipo1, txt_CpteAsoc_PtoVta1, txt_CpteAsoc_Nro1,
                                              txt_CpteAsoc_Cuit2, txt_CpteAsoc_Tipo2, txt_CpteAsoc_PtoVta2, txt_CpteAsoc_Nro2,
                                              txt_CpteAsoc_Cuit3, txt_CpteAsoc_Tipo3, txt_CpteAsoc_PtoVta3, txt_CpteAsoc_Nro3,
+                                             txt_CondicionIVAReceptorId,
                                              txt_cae_result, txt_cae, txt_Fec_vto_cae, txt_msg_err)
         r = False
 
@@ -1918,6 +1921,29 @@ Public Class Form25
         logica_facturacion_fiscal = r
 
     End Function
+    Private Function RetornaTipoResponsableReceptor(ByVal Codigo As Integer) As Integer
+        Dim r As Integer = 5
+        If Codigo = 1 Then
+            r = 1
+        End If
+        If Codigo = 2 Then
+            r = 5
+        End If
+        If Codigo = 3 Then
+            r = 4
+        End If
+        If Codigo = 4 Then
+            r = 6
+        End If
+        If Codigo = 5 Then
+            r = 13
+        End If
+        If Codigo = 6 Then
+            r = 7
+        End If
+        Return r
+    End Function
+
     Private Sub grabar_Comprobante_fiscal(ByVal xTipo As Byte)
         Try
             Dim j1 As Integer
@@ -2027,8 +2053,8 @@ Public Class Form25
                 x42 = 0
                 x43 = 0
                 x44 = 0
-                x45 = 0
-                x46 = 0
+                x45 = Total_Iva_105
+                x46 = Total_Iva_21
                 x47 = 0
                 x48 = 0
                 x49 = Total_Comprobante

@@ -24,7 +24,7 @@ Imports System.Xml.Serialization
 Namespace wsfev1
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
      System.Web.Services.WebServiceBindingAttribute(Name:="ServiceSoap", [Namespace]:="http://ar.gov.afip.dif.FEV1/"),  _
@@ -71,9 +71,13 @@ Namespace wsfev1
         
         Private FEParamGetTiposCbteOperationCompleted As System.Threading.SendOrPostCallback
         
+        Private FEParamGetCondicionIvaReceptorOperationCompleted As System.Threading.SendOrPostCallback
+        
         Private FEParamGetTiposDocOperationCompleted As System.Threading.SendOrPostCallback
         
         Private FEParamGetTiposPaisesOperationCompleted As System.Threading.SendOrPostCallback
+        
+        Private FEParamGetActividadesOperationCompleted As System.Threading.SendOrPostCallback
         
         Private useDefaultCredentialsSetExplicitly As Boolean
         
@@ -168,10 +172,16 @@ Namespace wsfev1
         Public Event FEParamGetTiposCbteCompleted As FEParamGetTiposCbteCompletedEventHandler
         
         '''<remarks/>
+        Public Event FEParamGetCondicionIvaReceptorCompleted As FEParamGetCondicionIvaReceptorCompletedEventHandler
+        
+        '''<remarks/>
         Public Event FEParamGetTiposDocCompleted As FEParamGetTiposDocCompletedEventHandler
         
         '''<remarks/>
         Public Event FEParamGetTiposPaisesCompleted As FEParamGetTiposPaisesCompletedEventHandler
+        
+        '''<remarks/>
+        Public Event FEParamGetActividadesCompleted As FEParamGetActividadesCompletedEventHandler
         
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ar.gov.afip.dif.FEV1/FECAESolicitar", RequestNamespace:="http://ar.gov.afip.dif.FEV1/", ResponseNamespace:="http://ar.gov.afip.dif.FEV1/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
@@ -445,22 +455,22 @@ Namespace wsfev1
         
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ar.gov.afip.dif.FEV1/FEParamGetCotizacion", RequestNamespace:="http://ar.gov.afip.dif.FEV1/", ResponseNamespace:="http://ar.gov.afip.dif.FEV1/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
-        Public Function FEParamGetCotizacion(ByVal Auth As FEAuthRequest, ByVal MonId As String) As FECotizacionResponse
-            Dim results() As Object = Me.Invoke("FEParamGetCotizacion", New Object() {Auth, MonId})
+        Public Function FEParamGetCotizacion(ByVal Auth As FEAuthRequest, ByVal MonId As String, ByVal FchCotiz As String) As FECotizacionResponse
+            Dim results() As Object = Me.Invoke("FEParamGetCotizacion", New Object() {Auth, MonId, FchCotiz})
             Return CType(results(0),FECotizacionResponse)
         End Function
         
         '''<remarks/>
-        Public Overloads Sub FEParamGetCotizacionAsync(ByVal Auth As FEAuthRequest, ByVal MonId As String)
-            Me.FEParamGetCotizacionAsync(Auth, MonId, Nothing)
+        Public Overloads Sub FEParamGetCotizacionAsync(ByVal Auth As FEAuthRequest, ByVal MonId As String, ByVal FchCotiz As String)
+            Me.FEParamGetCotizacionAsync(Auth, MonId, FchCotiz, Nothing)
         End Sub
         
         '''<remarks/>
-        Public Overloads Sub FEParamGetCotizacionAsync(ByVal Auth As FEAuthRequest, ByVal MonId As String, ByVal userState As Object)
+        Public Overloads Sub FEParamGetCotizacionAsync(ByVal Auth As FEAuthRequest, ByVal MonId As String, ByVal FchCotiz As String, ByVal userState As Object)
             If (Me.FEParamGetCotizacionOperationCompleted Is Nothing) Then
                 Me.FEParamGetCotizacionOperationCompleted = AddressOf Me.OnFEParamGetCotizacionOperationCompleted
             End If
-            Me.InvokeAsync("FEParamGetCotizacion", New Object() {Auth, MonId}, Me.FEParamGetCotizacionOperationCompleted, userState)
+            Me.InvokeAsync("FEParamGetCotizacion", New Object() {Auth, MonId, FchCotiz}, Me.FEParamGetCotizacionOperationCompleted, userState)
         End Sub
         
         Private Sub OnFEParamGetCotizacionOperationCompleted(ByVal arg As Object)
@@ -660,6 +670,33 @@ Namespace wsfev1
         End Sub
         
         '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ar.gov.afip.dif.FEV1/FEParamGetCondicionIvaReceptor", RequestNamespace:="http://ar.gov.afip.dif.FEV1/", ResponseNamespace:="http://ar.gov.afip.dif.FEV1/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function FEParamGetCondicionIvaReceptor(ByVal Auth As FEAuthRequest, ByVal ClaseCmp As String) As CondicionIvaReceptorResponse
+            Dim results() As Object = Me.Invoke("FEParamGetCondicionIvaReceptor", New Object() {Auth, ClaseCmp})
+            Return CType(results(0),CondicionIvaReceptorResponse)
+        End Function
+        
+        '''<remarks/>
+        Public Overloads Sub FEParamGetCondicionIvaReceptorAsync(ByVal Auth As FEAuthRequest, ByVal ClaseCmp As String)
+            Me.FEParamGetCondicionIvaReceptorAsync(Auth, ClaseCmp, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub FEParamGetCondicionIvaReceptorAsync(ByVal Auth As FEAuthRequest, ByVal ClaseCmp As String, ByVal userState As Object)
+            If (Me.FEParamGetCondicionIvaReceptorOperationCompleted Is Nothing) Then
+                Me.FEParamGetCondicionIvaReceptorOperationCompleted = AddressOf Me.OnFEParamGetCondicionIvaReceptorOperationCompleted
+            End If
+            Me.InvokeAsync("FEParamGetCondicionIvaReceptor", New Object() {Auth, ClaseCmp}, Me.FEParamGetCondicionIvaReceptorOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnFEParamGetCondicionIvaReceptorOperationCompleted(ByVal arg As Object)
+            If (Not (Me.FEParamGetCondicionIvaReceptorCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent FEParamGetCondicionIvaReceptorCompleted(Me, New FEParamGetCondicionIvaReceptorCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ar.gov.afip.dif.FEV1/FEParamGetTiposDoc", RequestNamespace:="http://ar.gov.afip.dif.FEV1/", ResponseNamespace:="http://ar.gov.afip.dif.FEV1/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function FEParamGetTiposDoc(ByVal Auth As FEAuthRequest) As DocTipoResponse
             Dim results() As Object = Me.Invoke("FEParamGetTiposDoc", New Object() {Auth})
@@ -714,6 +751,33 @@ Namespace wsfev1
         End Sub
         
         '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ar.gov.afip.dif.FEV1/FEParamGetActividades", RequestNamespace:="http://ar.gov.afip.dif.FEV1/", ResponseNamespace:="http://ar.gov.afip.dif.FEV1/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function FEParamGetActividades(ByVal Auth As FEAuthRequest) As FEActividadesResponse
+            Dim results() As Object = Me.Invoke("FEParamGetActividades", New Object() {Auth})
+            Return CType(results(0),FEActividadesResponse)
+        End Function
+        
+        '''<remarks/>
+        Public Overloads Sub FEParamGetActividadesAsync(ByVal Auth As FEAuthRequest)
+            Me.FEParamGetActividadesAsync(Auth, Nothing)
+        End Sub
+        
+        '''<remarks/>
+        Public Overloads Sub FEParamGetActividadesAsync(ByVal Auth As FEAuthRequest, ByVal userState As Object)
+            If (Me.FEParamGetActividadesOperationCompleted Is Nothing) Then
+                Me.FEParamGetActividadesOperationCompleted = AddressOf Me.OnFEParamGetActividadesOperationCompleted
+            End If
+            Me.InvokeAsync("FEParamGetActividades", New Object() {Auth}, Me.FEParamGetActividadesOperationCompleted, userState)
+        End Sub
+        
+        Private Sub OnFEParamGetActividadesOperationCompleted(ByVal arg As Object)
+            If (Not (Me.FEParamGetActividadesCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent FEParamGetActividadesCompleted(Me, New FEParamGetActividadesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+        
+        '''<remarks/>
         Public Shadows Sub CancelAsync(ByVal userState As Object)
             MyBase.CancelAsync(userState)
         End Sub
@@ -733,7 +797,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -778,7 +842,163 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
+     System.SerializableAttribute(),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
+    Partial Public Class ActividadesTipo
+        
+        Private idField As Long
+        
+        Private ordenField As Short
+        
+        Private descField As String
+        
+        '''<remarks/>
+        Public Property Id() As Long
+            Get
+                Return Me.idField
+            End Get
+            Set
+                Me.idField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Orden() As Short
+            Get
+                Return Me.ordenField
+            End Get
+            Set
+                Me.ordenField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Desc() As String
+            Get
+                Return Me.descField
+            End Get
+            Set
+                Me.descField = value
+            End Set
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
+     System.SerializableAttribute(),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
+    Partial Public Class FEActividadesResponse
+        
+        Private resultGetField() As ActividadesTipo
+        
+        Private errorsField() As Err
+        
+        Private eventsField() As Evt
+        
+        '''<remarks/>
+        Public Property ResultGet() As ActividadesTipo()
+            Get
+                Return Me.resultGetField
+            End Get
+            Set
+                Me.resultGetField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Errors() As Err()
+            Get
+                Return Me.errorsField
+            End Get
+            Set
+                Me.errorsField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Events() As Evt()
+            Get
+                Return Me.eventsField
+            End Get
+            Set
+                Me.eventsField = value
+            End Set
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
+     System.SerializableAttribute(),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
+    Partial Public Class Err
+        
+        Private codeField As Integer
+        
+        Private msgField As String
+        
+        '''<remarks/>
+        Public Property Code() As Integer
+            Get
+                Return Me.codeField
+            End Get
+            Set
+                Me.codeField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Msg() As String
+            Get
+                Return Me.msgField
+            End Get
+            Set
+                Me.msgField = value
+            End Set
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
+     System.SerializableAttribute(),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
+    Partial Public Class Evt
+        
+        Private codeField As Integer
+        
+        Private msgField As String
+        
+        '''<remarks/>
+        Public Property Code() As Integer
+            Get
+                Return Me.codeField
+            End Get
+            Set
+                Me.codeField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Msg() As String
+            Get
+                Return Me.msgField
+            End Get
+            Set
+                Me.msgField = value
+            End Set
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -811,7 +1031,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -856,73 +1076,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
-     System.SerializableAttribute(),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
-    Partial Public Class Err
-        
-        Private codeField As Integer
-        
-        Private msgField As String
-        
-        '''<remarks/>
-        Public Property Code() As Integer
-            Get
-                Return Me.codeField
-            End Get
-            Set
-                Me.codeField = value
-            End Set
-        End Property
-        
-        '''<remarks/>
-        Public Property Msg() As String
-            Get
-                Return Me.msgField
-            End Get
-            Set
-                Me.msgField = value
-            End Set
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
-     System.SerializableAttribute(),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
-    Partial Public Class Evt
-        
-        Private codeField As Integer
-        
-        Private msgField As String
-        
-        '''<remarks/>
-        Public Property Code() As Integer
-            Get
-                Return Me.codeField
-            End Get
-            Set
-                Me.codeField = value
-            End Set
-        End Property
-        
-        '''<remarks/>
-        Public Property Msg() As String
-            Get
-                Return Me.msgField
-            End Get
-            Set
-                Me.msgField = value
-            End Set
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -979,7 +1133,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1024,7 +1178,97 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
+     System.SerializableAttribute(),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
+    Partial Public Class CondicionIvaReceptor
+        
+        Private idField As Integer
+        
+        Private descField As String
+        
+        Private cmp_ClaseField As String
+        
+        '''<remarks/>
+        Public Property Id() As Integer
+            Get
+                Return Me.idField
+            End Get
+            Set
+                Me.idField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Desc() As String
+            Get
+                Return Me.descField
+            End Get
+            Set
+                Me.descField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Cmp_Clase() As String
+            Get
+                Return Me.cmp_ClaseField
+            End Get
+            Set
+                Me.cmp_ClaseField = value
+            End Set
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
+     System.SerializableAttribute(),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
+    Partial Public Class CondicionIvaReceptorResponse
+        
+        Private resultGetField() As CondicionIvaReceptor
+        
+        Private errorsField() As Err
+        
+        Private eventsField() As Evt
+        
+        '''<remarks/>
+        Public Property ResultGet() As CondicionIvaReceptor()
+            Get
+                Return Me.resultGetField
+            End Get
+            Set
+                Me.resultGetField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Errors() As Err()
+            Get
+                Return Me.errorsField
+            End Get
+            Set
+                Me.errorsField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property Events() As Evt()
+            Get
+                Return Me.eventsField
+            End Get
+            Set
+                Me.eventsField = value
+            End Set
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1081,7 +1325,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1126,7 +1370,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1183,7 +1427,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1228,7 +1472,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1285,7 +1529,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1330,7 +1574,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1387,7 +1631,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1432,7 +1676,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1489,7 +1733,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1534,7 +1778,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1591,7 +1835,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1636,7 +1880,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1693,7 +1937,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1738,7 +1982,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1783,7 +2027,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1829,7 +2073,7 @@ Namespace wsfev1
     
     '''<remarks/>
     <System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAEASinMovResponse)),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1874,7 +2118,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1920,7 +2164,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -1965,7 +2209,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2070,7 +2314,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2103,7 +2347,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2148,7 +2392,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2205,7 +2449,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2217,7 +2461,7 @@ Namespace wsfev1
     '''<remarks/>
     <System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAEACabResponse)),  _
      System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAECabResponse)),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2310,7 +2554,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2320,7 +2564,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2344,7 +2588,7 @@ Namespace wsfev1
     '''<remarks/>
     <System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAEADetResponse)),  _
      System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAEDetResponse)),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2449,7 +2693,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2483,7 +2727,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2516,7 +2760,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2528,7 +2772,7 @@ Namespace wsfev1
     '''<remarks/>
     <System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAEACabRequest)),  _
      System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAECabRequest)),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2573,7 +2817,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2583,7 +2827,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2620,7 +2864,7 @@ Namespace wsfev1
     <System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAEADetRequest)),  _
      System.Xml.Serialization.XmlIncludeAttribute(GetType(FECAEDetRequest)),  _
      System.Xml.Serialization.XmlIncludeAttribute(GetType(FECompConsResponse)),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2661,6 +2905,14 @@ Namespace wsfev1
         
         Private monCotizField As Double
         
+        Private monCotizFieldSpecified As Boolean
+        
+        Private canMisMonExtField As String
+        
+        Private condicionIVAReceptorIdField As Integer
+        
+        Private condicionIVAReceptorIdFieldSpecified As Boolean
+        
         Private cbtesAsocField() As CbteAsoc
         
         Private tributosField() As Tributo
@@ -2672,6 +2924,8 @@ Namespace wsfev1
         Private compradoresField() As Comprador
         
         Private periodoAsocField As Periodo
+        
+        Private actividadesField() As Actividad
         
         '''<remarks/>
         Public Property Concepto() As Integer
@@ -2844,6 +3098,48 @@ Namespace wsfev1
         End Property
         
         '''<remarks/>
+        <System.Xml.Serialization.XmlIgnoreAttribute()>  _
+        Public Property MonCotizSpecified() As Boolean
+            Get
+                Return Me.monCotizFieldSpecified
+            End Get
+            Set
+                Me.monCotizFieldSpecified = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property CanMisMonExt() As String
+            Get
+                Return Me.canMisMonExtField
+            End Get
+            Set
+                Me.canMisMonExtField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        Public Property CondicionIVAReceptorId() As Integer
+            Get
+                Return Me.condicionIVAReceptorIdField
+            End Get
+            Set
+                Me.condicionIVAReceptorIdField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        <System.Xml.Serialization.XmlIgnoreAttribute()>  _
+        Public Property CondicionIVAReceptorIdSpecified() As Boolean
+            Get
+                Return Me.condicionIVAReceptorIdFieldSpecified
+            End Get
+            Set
+                Me.condicionIVAReceptorIdFieldSpecified = value
+            End Set
+        End Property
+        
+        '''<remarks/>
         Public Property CbtesAsoc() As CbteAsoc()
             Get
                 Return Me.cbtesAsocField
@@ -2902,10 +3198,20 @@ Namespace wsfev1
                 Me.periodoAsocField = value
             End Set
         End Property
+        
+        '''<remarks/>
+        Public Property Actividades() As Actividad()
+            Get
+                Return Me.actividadesField
+            End Get
+            Set
+                Me.actividadesField = value
+            End Set
+        End Property
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -2974,7 +3280,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3043,7 +3349,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3088,7 +3394,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3121,7 +3427,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3166,7 +3472,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3199,8 +3505,29 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
+     System.SerializableAttribute(),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://ar.gov.afip.dif.FEV1/")>  _
+    Partial Public Class Actividad
+        
+        Private idField As Long
+        
+        '''<remarks/>
+        Public Property Id() As Long
+            Get
+                Return Me.idField
+            End Get
+            Set
+                Me.idField = value
+            End Set
+        End Property
+    End Class
+    
+    '''<remarks/>
     <System.Xml.Serialization.XmlIncludeAttribute(GetType(FECompConsResponse)),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3210,7 +3537,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3316,7 +3643,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3361,7 +3688,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3406,7 +3733,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3475,7 +3802,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3520,7 +3847,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3565,7 +3892,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3622,7 +3949,7 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),  _
      System.SerializableAttribute(),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -3655,11 +3982,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECAESolicitarCompletedEventHandler(ByVal sender As Object, ByVal e As FECAESolicitarCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECAESolicitarCompletedEventArgs
@@ -3682,11 +4009,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECompTotXRequestCompletedEventHandler(ByVal sender As Object, ByVal e As FECompTotXRequestCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECompTotXRequestCompletedEventArgs
@@ -3709,11 +4036,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEDummyCompletedEventHandler(ByVal sender As Object, ByVal e As FEDummyCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEDummyCompletedEventArgs
@@ -3736,11 +4063,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECompUltimoAutorizadoCompletedEventHandler(ByVal sender As Object, ByVal e As FECompUltimoAutorizadoCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECompUltimoAutorizadoCompletedEventArgs
@@ -3763,11 +4090,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECompConsultarCompletedEventHandler(ByVal sender As Object, ByVal e As FECompConsultarCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECompConsultarCompletedEventArgs
@@ -3790,11 +4117,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECAEARegInformativoCompletedEventHandler(ByVal sender As Object, ByVal e As FECAEARegInformativoCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECAEARegInformativoCompletedEventArgs
@@ -3817,11 +4144,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECAEASolicitarCompletedEventHandler(ByVal sender As Object, ByVal e As FECAEASolicitarCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECAEASolicitarCompletedEventArgs
@@ -3844,11 +4171,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECAEASinMovimientoConsultarCompletedEventHandler(ByVal sender As Object, ByVal e As FECAEASinMovimientoConsultarCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECAEASinMovimientoConsultarCompletedEventArgs
@@ -3871,11 +4198,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECAEASinMovimientoInformarCompletedEventHandler(ByVal sender As Object, ByVal e As FECAEASinMovimientoInformarCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECAEASinMovimientoInformarCompletedEventArgs
@@ -3898,11 +4225,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FECAEAConsultarCompletedEventHandler(ByVal sender As Object, ByVal e As FECAEAConsultarCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FECAEAConsultarCompletedEventArgs
@@ -3925,11 +4252,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetCotizacionCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetCotizacionCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetCotizacionCompletedEventArgs
@@ -3952,11 +4279,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetTiposTributosCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetTiposTributosCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetTiposTributosCompletedEventArgs
@@ -3979,11 +4306,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetTiposMonedasCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetTiposMonedasCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetTiposMonedasCompletedEventArgs
@@ -4006,11 +4333,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetTiposIvaCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetTiposIvaCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetTiposIvaCompletedEventArgs
@@ -4033,11 +4360,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetTiposOpcionalCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetTiposOpcionalCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetTiposOpcionalCompletedEventArgs
@@ -4060,11 +4387,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetTiposConceptoCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetTiposConceptoCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetTiposConceptoCompletedEventArgs
@@ -4087,11 +4414,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetPtosVentaCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetPtosVentaCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetPtosVentaCompletedEventArgs
@@ -4114,11 +4441,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetTiposCbteCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetTiposCbteCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetTiposCbteCompletedEventArgs
@@ -4141,11 +4468,38 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub FEParamGetCondicionIvaReceptorCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetCondicionIvaReceptorCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class FEParamGetCondicionIvaReceptorCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As CondicionIvaReceptorResponse
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),CondicionIvaReceptorResponse)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetTiposDocCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetTiposDocCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetTiposDocCompletedEventArgs
@@ -4168,11 +4522,11 @@ Namespace wsfev1
     End Class
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub FEParamGetTiposPaisesCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetTiposPaisesCompletedEventArgs)
     
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0"),  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class FEParamGetTiposPaisesCompletedEventArgs
@@ -4190,6 +4544,33 @@ Namespace wsfev1
             Get
                 Me.RaiseExceptionIfNecessary
                 Return CType(Me.results(0),FEPaisResponse)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub FEParamGetActividadesCompletedEventHandler(ByVal sender As Object, ByVal e As FEParamGetActividadesCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class FEParamGetActividadesCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As FEActividadesResponse
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),FEActividadesResponse)
             End Get
         End Property
     End Class
